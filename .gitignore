@@ -68,3 +68,6 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+# Ensure config data for sanity CMS isn't pushed to repo
+/the-beef-shop-sanity
