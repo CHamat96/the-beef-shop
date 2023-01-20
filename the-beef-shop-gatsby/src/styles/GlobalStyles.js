@@ -17,6 +17,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
         --black:#14110F;
         --beige:#EBEBD3;
         --orange:#EF8354;
+        --brown:#633F1C;
         --red:#B20D30;
         --shadow:#8896AB34;
 
@@ -40,7 +41,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
     h1,
     h2,
     h3,
-    h4
+    h4,
     p,
     a { 
         margin:0;
@@ -54,7 +55,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 
     .wrapper {
         max-width:1450px;
-        width:85%;
+        width:90%;
         margin:0 auto;
     }
 
