@@ -7,14 +7,14 @@ const MenuGridStyles = styled.div`
     margin:15px auto;
     display:grid;
     grid-template-columns:repeat(auto-fill, minmax(250px,1fr));
-    justify-content:center;
-    align-content:center;
+    justify-content:space-evenly;
+    align-content:space-around;
     grid-gap:2rem;
     grid-auto-rows:auto 1fr 100px;
 `
 
 const ItemStyles = styled.div`
-    display:grid;
+    display:inline-grid;
     @supports not (grid-template-rows:subgrid){
         --row: auto auto 1fr;
     }
@@ -33,7 +33,7 @@ const ItemStyles = styled.div`
     }
 `
 
-const formatMoney = Intl.NumberFormat('en-CA', {
+export const formatMoney = Intl.NumberFormat('en-CA', {
     style: 'currency',
     currency: 'CAD',
   }).format;

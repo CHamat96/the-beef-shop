@@ -17,6 +17,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 
     :root {
         --black:#14110F;
+        --white:#FCFCFC;
         --beige:#EBEBD3;
         --orange:#EF8354;
         --brown:#633F1C;
@@ -31,6 +32,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
         /* box shadow (also applicable for text shadow) */
         --boxShadow: 5px 5px 2px;
         --textBorder:-1px 0 var(--black), 0 1px var(--black), 1px 0 var(--black), 0 -1px var(--black);
+        --textBorderRed:-1px 0 var(--red), 0 1px var(--red), 1px 0 var(--red), 0 -1px var(--red);
     }
 
     html {
@@ -67,6 +69,33 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
         padding:25px;
     }
 
+    .menuLink {
+        display:block;
+    margin:0 auto;
+    background:var(--red);
+    width:250px;
+    padding:25px;
+    text-align:center;
+    box-shadow:5px 5px var(--black);
+    transition:0.2s ease;
+    border:solid 4px var(--red);
+    font-family:var(--headingFont);
+        color:#ffffff;
+        font-weight:600;
+      &:hover,
+      &:focus-within {
+        background:white;
+        border:solid 4px var(--black);
+        transform:rotate(-5deg);
+        color:var(--black);
+      }
+  }
+
+  .flexParent {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+}
 `
 
 export default GlobalStyles

@@ -11,6 +11,12 @@ h1 {
     font-size:4.5rem;
 }
 
+h3,
+a {
+    font-family:var(--navFont);
+    font-weight:800;
+}
+
 p {
     font-family: var(--bodyFont);
     margin:15px 0;
@@ -22,8 +28,6 @@ p {
 h3 {
     font-size:2.4rem;
     line-height:2.7rem;
-    font-family:var(--navFont);
-    font-weight:800;
     margin:5px 0;
 
     &.itemTitle {
@@ -31,6 +35,12 @@ h3 {
         font-style:italic;
         padding:10px;
     }
+}
+
+h4 {
+    font-size:2.2rem;
+    margin:5px 0;
+    font-family:var(--titleFont);
 }
 
 .accent {
@@ -51,7 +61,7 @@ h3 {
     color:var(--red);
 }
 
-span.strong {
+.strong {
     font-weight:800;
 }
 

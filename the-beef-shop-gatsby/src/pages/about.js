@@ -5,8 +5,6 @@ import styled from "styled-components";
 
 const AboutStyles = styled.div`
     .flexParent {
-        display:flex;
-        justify-content:space-between;
         flex-wrap:wrap-reverse;
         width:100%;
     }
