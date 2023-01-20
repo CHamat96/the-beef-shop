@@ -1,8 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 import "@fontsource/oleo-script"
 import "@fontsource/pt-sans/"
-import "@fontsource/work-sans"
+import "@fontsource/pt-sans/700.css"
+import "@fontsource/work-sans/variable.css"
 import "@fontsource/unbounded"
+import "@fontsource/unbounded/800.css"
 
 const GlobalStyles = createGlobalStyle`
 
@@ -28,6 +30,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 
         /* box shadow (also applicable for text shadow) */
         --boxShadow: 5px 5px 2px;
+        --textBorder:-1px 0 var(--black), 0 1px var(--black), 1px 0 var(--black), 0 -1px var(--black);
     }
 
     html {

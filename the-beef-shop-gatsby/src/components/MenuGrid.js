@@ -39,24 +39,23 @@ const formatMoney = Intl.NumberFormat('en-CA', {
   }).format;
 
 const MenuItem = function({ item }){
-    const image = getImage(item.image.image.asset.gatsbyImageData)
-    console.log(item)
+    const image = getImage(item.image.asset.gatsbyImageData)
     return (
         <ItemStyles>
         <GatsbyImage image={image}/>
-        <Link to={`/menu/${item.slug.current}`}>
-        <h3 className="accent itemTitle">{item.name}</h3>
+        <Link className="accent" to={`/menu/${item.slug.current}`}>
+        <h3 className="itemTitle">{item.name}</h3>
         </Link>
-        <p>PRICE: {formatMoney(item.price / 100)}</p>
+        <p><span className="strong">PRICE:</span> {formatMoney(item.price / 100)}</p>
         </ItemStyles>
     )
 }
 
 
-export default function MenuGrid({ menuItems }){
+export default function MenuGrid({ menu }){
     return (
         <MenuGridStyles>
-        {menuItems.map((item) => (
+        {menu.map((item) => (
             <MenuItem
             key={item.id}
             item={item}
