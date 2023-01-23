@@ -1,4 +1,4 @@
-import { graphql, Link } from "gatsby";
+import { graphql  } from "gatsby";
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import React from "react";
 import "../images/about-hero.jpg";

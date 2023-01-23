@@ -9,7 +9,7 @@ import MenuGrid from "../components/MenuGrid";
 // Assets/Images
 import "../images/index-hero.jpg";
 import "../images/kitchen.jpeg";
-import SEO from "../components/Seo";
+import Seo from "../components/Seo";
 
 const HomeStyles = styled.div`
   .heroImage {
@@ -82,7 +82,7 @@ export default function Home({ data }) {
 
   return (
     <>
-      <SEO title="Home" />
+      <Seo title="Home" />
       <HomeStyles>
         <div className="heroImage">
           <StaticImage
