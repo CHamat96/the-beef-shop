@@ -1,5 +1,5 @@
 # The Beef Shop
-
+!["The Beef Shop Homepage - Desktop version"](https://images.percy.io/e8f14e760118867bdde82b379a300d39bc6fb8a7c3f0de6267a0f812296e964f "The Beef Shop Homepage - Desktop Version")
 A sample webpage for an italian beef restaurant
 
 ## About
@@ -71,3 +71,8 @@ to deploy the project run
 ```bash
     npm run build
 ```
+
+## TODO
+* Finish the "Order Checkout" form
+* Add in Contact Page
+* Add more content to "Footer" section
