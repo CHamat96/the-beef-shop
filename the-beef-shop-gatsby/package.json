@@ -11,6 +11,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
+    "capture":"percy exec -- gatsby build",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
