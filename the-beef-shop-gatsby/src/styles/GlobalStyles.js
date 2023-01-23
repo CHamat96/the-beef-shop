@@ -1,10 +1,10 @@
 import { createGlobalStyle } from "styled-components";
-import "@fontsource/oleo-script"
-import "@fontsource/pt-sans/"
-import "@fontsource/pt-sans/700.css"
-import "@fontsource/work-sans/variable.css"
-import "@fontsource/unbounded"
-import "@fontsource/unbounded/800.css"
+import "@fontsource/oleo-script";
+import "@fontsource/pt-sans/";
+import "@fontsource/pt-sans/700.css";
+import "@fontsource/work-sans/variable.css";
+import "@fontsource/unbounded";
+import "@fontsource/unbounded/800.css";
 
 const GlobalStyles = createGlobalStyle`
 
@@ -37,6 +37,9 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 
     html {
         font-size:62.5%;
+        @media screen and (max-width:500px){
+            font-size:50%;
+        }
     }
 
     body {
@@ -60,8 +63,11 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 
     .wrapper {
         max-width:1450px;
-        width:90%;
+        width:85%;
         margin:0 auto;
+        @media screen and (max-width:400px){
+            width:90%;
+        }
     }
 
     section {
@@ -73,7 +79,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
         display:block;
     margin:0 auto;
     background:var(--red);
-    width:250px;
+    max-width:250px;
     padding:25px;
     text-align:center;
     box-shadow:5px 5px var(--black);
@@ -96,6 +102,13 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
     flex-wrap:wrap;
     justify-content:space-between;
 }
-`
 
-export default GlobalStyles
+img {
+    display:block;
+    width:100%;
+    height:auto;
+    object-fit:contain;
+}
+`;
+
+export default GlobalStyles;

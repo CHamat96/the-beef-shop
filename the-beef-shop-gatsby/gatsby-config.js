@@ -7,32 +7,38 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
-require('dotenv').config({
-  path:`.env.${process.env.NODE_ENV}`
-})
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 
 module.exports = {
+  siteMetadata: {
+    title: `The Beef Shop`,
+    description: `An example Restaurant webpage built by Corey Hamat`,
+    siteUrl: `https://coreyhamat.me`,
+    image: `/beef.png`,
+  },
   plugins: [
-    'gatsby-plugin-styled-components',
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-image',
+    "gatsby-plugin-styled-components",
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-image",
     {
-      resolve:`gatsby-source-filesystem`,
+      resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
       },
     },
-    'gatsby-transformer-sharp',
+    "gatsby-transformer-sharp",
     `gatsby-plugin-sharp`,
     {
-      resolve:`gatsby-source-sanity`,
+      resolve: `gatsby-source-sanity`,
       options: {
-        projectId:`t6u601rw`,
-        dataset: 'production',
+        projectId: `t6u601rw`,
+        dataset: "production",
         watchMode: true,
-        token: process.env.SANITY_TOKEN
-      }
-    }
+        token: process.env.SANITY_TOKEN,
+      },
+    },
   ],
-}
+};

@@ -65,6 +65,6 @@ h4 {
     font-weight:800;
 }
 
-`
+`;
 
-export default Typography
+export default Typography;
