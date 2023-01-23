@@ -9,7 +9,13 @@ I wanted to test myself with building a website using both Gatsby and a Headless
 **This Project was built with**
 * Gatsby
 * Sanity
-* Styled Components
+
+### Dependencies
+The following dependencies/gatsby plugins were also used when building the project
+* Styled-components
+* React-icons
+* Fontsource
+* React-Helmet
 
 ## Run The Project Locally
 
