@@ -103,11 +103,16 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
     justify-content:space-between;
 }
 
+.gatsby-image-wrapper img {
+    display:block;
+    width:auto;
+    height:100%;
+}
+
 img {
     display:block;
-    width:100%;
-    height:auto;
-    object-fit:contain;
+    width:auto;
+    height:100%;
 }
 `;
 

@@ -72,6 +72,10 @@ const HomeStyles = styled.div`
       margin: 15px;
     }
   }
+
+  .topPicksGrid {
+    place-content:space-between;
+  }
 `;
 
 export default function Home({ data }) {
@@ -91,7 +95,8 @@ export default function Home({ data }) {
             alt="the outside of a restaurant at night"
             placeholder="blurred"
             loading="lazy"
-            style={{ maxHeight: "35rem" }}
+            aspectRatio={16 / 9}
+            // style={{ maxHeight: "35rem" }}
           />
           <div className="overlay">
             <h2>
@@ -140,7 +145,8 @@ export default function Home({ data }) {
             src="../images/kitchen.jpeg"
             layout="fullWidth"
             alt="a frying pan over a hot stove"
-            style={{ maxHeight: "35rem", border: "solid 15px var(--red)" }}
+            style={{border: "solid 15px var(--red)" }}
+            aspectRatio={ 16/9 }
           />
           <section>
             <h3>
@@ -150,7 +156,7 @@ export default function Home({ data }) {
               </Link>
               !
             </h3>
-            <MenuGrid menu={topPicks} />
+            <MenuGrid menu={topPicks} gridClass="topPicksGrid"/>
           </section>
           <section className="headChef">
             <h3>Meet our Head Chef, {headChef.name}</h3>
@@ -221,7 +227,7 @@ export const query = graphql`
         }
         image {
           asset {
-            gatsbyImageData(
+            gatsbyImage(
               layout: CONSTRAINED
               width: 250
               height: 250

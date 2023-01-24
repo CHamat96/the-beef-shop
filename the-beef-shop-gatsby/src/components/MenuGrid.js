@@ -6,15 +6,14 @@ import styled from "styled-components";
 const MenuGridStyles = styled.div`
   margin: 25px auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  justify-content: space-evenly;
-  align-content: space-around;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  place-content:center;
   grid-gap: 2rem;
   grid-auto-rows: auto 1fr 100px;
 `;
 
 const ItemStyles = styled.div`
-  min-width: 200px;
+  max-width: 500px;
   display: inline-grid;
   @supports not (grid-template-rows: subgrid) {
     --row: auto auto 1fr;
@@ -25,8 +24,10 @@ const ItemStyles = styled.div`
   border: solid 5px var(--red);
   box-shadow: var(--boxShadow);
   padding: 15px;
+  align-items:center;
 
   .gatsby-image-wrapper {
+    margin:0 auto;
     transform: rotate(-2deg);
     img {
       border: dashed 15px var(--beige);
@@ -40,9 +41,9 @@ export const formatMoney = Intl.NumberFormat("en-CA", {
 }).format;
 
 const MenuItem = function ({ item }) {
-  const image = getImage(item.image.asset.gatsbyImageData);
+  const image = getImage(item.image.asset.gatsbyImage);
   return (
-    <ItemStyles>
+    <ItemStyles className="item">
       <GatsbyImage image={image} />
       <Link className="accent" to={`/menu/${item.slug.current}`}>
         <h3 className="itemTitle">{item.name}</h3>
@@ -54,11 +55,12 @@ const MenuItem = function ({ item }) {
   );
 };
 
-export default function MenuGrid({ menu }) {
+export default function MenuGrid({ menu, gridClass }) {
   return (
-    <MenuGridStyles>
+    <MenuGridStyles
+    className={gridClass || ''}s>
       {menu.map((item, index) => (
-        <MenuItem key={`${item.id} - ${index}`} item={item} />
+        <MenuItem key={`${item.id} - ${index}`} item={item}/>
       ))}
     </MenuGridStyles>
   );
