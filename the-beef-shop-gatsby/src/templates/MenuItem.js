@@ -7,40 +7,78 @@ import OrderForm from "../components/OrderForm";
 import Seo from "../components/Seo";
 
 const MenuItemStyles = styled.section`
-  .flexParent {
-    flex-wrap: wrap;
-    align-items: center;
-    > .gatsby-image-wrapper {
-      flex: 2 0 calc(50% - 50px);
-      transform: rotate(4.5deg);
-      border: solid 11px var(--red);
-      box-shadow: var(--boxShadow);
-      margin: 25px;
+
+.wrapper {
+    border: dashed 8px var(--beige);
+    padding: 15px;
+    @media screen and (max-width:400px) {
+      width:95%;
     }
   }
 
-  .wrapper {
-    border: dashed 8px var(--beige);
-    padding: 15px;
+  h2 {
+    padding-top: 25px;
+    padding-left:25px;
+    font-size:3.8rem;
+    font-family:var(--titleFont);
   }
+
+  .flexParent {
+    margin:50px 0;
+    flex-wrap: wrap;
+    place-content:center;
+    
+    .imgContainer {
+      margin:0 2.5rem;
+      flex: 0 2 auto;
+    }
+
+    .itemImage {
+      margin:0 auto;
+      transform: rotate(4.5deg) scale(0.9);
+      border: solid 11px var(--red);
+      box-shadow: var(--boxShadow);
+    }
+  }
+
+
 
   .itemDetails {
     padding: 25px;
-    flex: 1 1 calc(50% - 75px);
+    flex: 1 1 35%;
 
     .description {
       font-style: italic;
+      padding:15px 0;
     }
   }
 
   .suggestions {
-    width: 100%;
+    width: 80%;
     margin: 0px auto;
     margin-top: 50px;
+    @media screen and (max-width:350px){
+      width:100%;
+    }
+
     h4 {
       font-size: 2.5rem;
       text-align: center;
     }
+    .suggestionsGrid {
+      grid-template-columns:repeat(auto-fit,minmax(225px, 1.5fr));
+      grid-gap:2rem;
+      place-content:space-between;
+
+      .item {
+        transform:scale(0.9);
+        padding:10px;
+      }
+      .gatsby-image-wrapper img {
+        border:dashed 10px var(--beige);
+      }
+    }
+
   }
 `;
 
@@ -55,7 +93,9 @@ export default function MenuItemPage({ data: { item } }) {
           <h2>{item.name}</h2>
           <div className="itemContainer">
             <div className="flexParent">
-              <GatsbyImage image={image} />
+              <div className="imgContainer">
+              <GatsbyImage image={image} className="itemImage" />
+              </div>
               <div className="itemDetails">
                 {item.description ? (
                   <>
@@ -77,7 +117,8 @@ export default function MenuItemPage({ data: { item } }) {
               {item.suggestions.length > 0 ? (
                 <div className="suggestions">
                   <h4>You might also like:</h4>
-                  <MenuGrid key={item.id} menu={item.suggestions} />
+                  <MenuGrid key={item.id} menu={item.suggestions}
+                  gridClass="suggestionsGrid"  />
                 </div>
               ) : (
                 ""
@@ -99,10 +140,9 @@ export const query = graphql`
       description
       image {
         asset {
-          gatsbyImageData(
-            height: 500
-            width: 500
-            layout: CONSTRAINED
+          gatsbyImage(
+            width:350
+            aspectRatio:1.0
             placeholder: BLURRED
           )
         }
@@ -119,10 +159,10 @@ export const query = graphql`
         }
         image {
           asset {
-            gatsbyImageData(
-              width: 175
-              height: 175
-              layout: CONSTRAINED
+            gatsbyImage(
+              layout:CONSTRAINED
+              width:175
+              aspectRatio:1.00
               placeholder: BLURRED
             )
           }

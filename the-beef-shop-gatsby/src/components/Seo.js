@@ -14,7 +14,7 @@ export default function Seo({ children, location, description, title, image }) {
     }
   `);
   return (
-    <Helmet titleTemplate={`%s - ${site.siteMetadata.title}`}>
+    <Helmet titleTemplate={`${site.siteMetadata.title} || %s `}>
       <html lang="en" />
       <title>{title}</title>
       <link rel="icon" type="image/svg+xml" href="/beef.svg" />

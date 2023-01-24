@@ -17,7 +17,7 @@ const FormStyles = styled.form`
     width: 100%;
     display: grid;
     grid-template-columns: 1rem auto;
-    grid-gap: 1rem;
+    grid-gap: 1.5rem;
   }
 
   .addToOrder {
@@ -50,12 +50,13 @@ const FormStyles = styled.form`
     /* Create new styles */
     font: inherit;
     color: currentColor;
-    width: 1.5rem;
-    max-height: 1.5rem;
+    width:15px;
+    height:15px;
     border: 0.15em solid currentColor;
     transform: translateY(-0.075em);
     display: grid;
     place-content: center;
+    align-self:center;
   }
 
   input[type="radio"] {

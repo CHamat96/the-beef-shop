@@ -1,7 +1,7 @@
 import { graphql } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import SEO from "../components/Seo";
+import Seo from "../components/Seo";
 
 const BeersStyles = styled.section`
   text-align: center;
@@ -35,7 +35,7 @@ export default function BeersPage({ data }) {
 
   return (
     <>
-      <SEO title="What's on Tap?" />
+      <Seo title="What's on Tap?" />
       <BeersStyles>
         <div className="wrapper">
           <h2>What's on Tap?</h2>

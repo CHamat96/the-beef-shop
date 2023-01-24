@@ -100,10 +100,10 @@ const HeaderStyles = styled.header`
 
     .orderCount {
       position: absolute;
-      display: inline-block;
       top: -15px;
       left: 45px;
       transform: translate(-35px, -15px);
+      visibility:visible;
       background: var(--beige);
       color: #000;
       border: solid 2px black;
@@ -113,10 +113,14 @@ const HeaderStyles = styled.header`
       border-radius: 50%;
       z-index: 0;
       text-shadow: none;
+      transform:0.8s ease-in-out visibility;
       @media screen and (max-width: 500px) {
         padding: 5px;
         left: 75px;
         transform: translate(-35px, -15px);
+      }
+      &.hidden {
+        visibility:hidden;
       }
     }
   }
@@ -157,6 +161,8 @@ export default function Header() {
   const { order } = useOrder({
     menu,
   });
+
+
   return (
     <HeaderStyles>
       <div className="wrapper">
@@ -224,11 +230,7 @@ export default function Header() {
               >
                 <AiOutlineShoppingCart />
                 <span className="onMobile">View Cart</span>
-                {order.length > 0 ? (
-                  <p className="orderCount">{order.length}</p>
-                ) : (
-                  ""
-                )}
+                <p className={order.length > 0 ? "orderCount" : "orderCount hidden"}>{order.length}</p>
               </Link>
             </li>
           </ul>

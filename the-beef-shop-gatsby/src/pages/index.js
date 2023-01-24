@@ -9,38 +9,9 @@ import MenuGrid from "../components/MenuGrid";
 // Assets/Images
 import "../images/index-hero.jpg";
 import "../images/kitchen.jpeg";
-import SEO from "../components/Seo";
+import Seo from "../components/Seo";
 
 const HomeStyles = styled.div`
-  .heroImage {
-    position: relative;
-
-    .overlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      padding: 15px;
-      font-size: 3.8rem;
-      border-radius: 15px;
-      background: var(--shadow);
-      h2 {
-        text-shadow: var(--textBorder);
-        color: #ffffff;
-        text-transform: uppercase;
-      }
-      .title {
-        display: block;
-        font-family: var(--titleFont);
-        text-transform: none;
-      }
-      @media screen and (max-width: 500px) {
-        left: 50px;
-        font-size: 20px;
-        transform: translate(0%, -50%);
-      }
-    }
-  }
 
   .headChef {
     .flexParent {
@@ -72,6 +43,10 @@ const HomeStyles = styled.div`
       margin: 15px;
     }
   }
+
+  .topPicksGrid {
+    place-content:space-between;
+  }
 `;
 
 export default function Home({ data }) {
@@ -82,7 +57,7 @@ export default function Home({ data }) {
 
   return (
     <>
-      <SEO title="Home" />
+      <Seo title="Home" />
       <HomeStyles>
         <div className="heroImage">
           <StaticImage
@@ -91,7 +66,7 @@ export default function Home({ data }) {
             alt="the outside of a restaurant at night"
             placeholder="blurred"
             loading="lazy"
-            style={{ maxHeight: "35rem" }}
+            aspectRatio={2.75 /1}
           />
           <div className="overlay">
             <h2>
@@ -140,7 +115,8 @@ export default function Home({ data }) {
             src="../images/kitchen.jpeg"
             layout="fullWidth"
             alt="a frying pan over a hot stove"
-            style={{ maxHeight: "35rem", border: "solid 15px var(--red)" }}
+            style={{border: "solid 15px var(--red)" }}
+            aspectRatio={ 3 / 1 }
           />
           <section>
             <h3>
@@ -150,7 +126,7 @@ export default function Home({ data }) {
               </Link>
               !
             </h3>
-            <MenuGrid menu={topPicks} />
+            <MenuGrid menu={topPicks} gridClass="topPicksGrid"/>
           </section>
           <section className="headChef">
             <h3>Meet our Head Chef, {headChef.name}</h3>
@@ -221,7 +197,7 @@ export const query = graphql`
         }
         image {
           asset {
-            gatsbyImageData(
+            gatsbyImage(
               layout: CONSTRAINED
               width: 250
               height: 250

@@ -103,11 +103,12 @@ export const query = graphql`
       price
       image {
         asset {
-          gatsbyImageData(
+          gatsbyImage(
             layout:CONSTRAINED,
             placeholder:BLURRED,
             height:250,
             width:250
+            cropFocus:ENTROPY
           )
         }
       }

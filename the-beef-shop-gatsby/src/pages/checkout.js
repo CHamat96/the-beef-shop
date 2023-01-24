@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import { FiXCircle } from "react-icons/fi";
 import styled from "styled-components";
 import { formatMoney } from "../components/MenuGrid";
-import SEO from "../components/Seo";
-import FormStyles from "../styles/FormStyles";
+import Seo from "../components/Seo";
 import calculateOrderTotal from "../utils/calculateTotal";
 import useOrder from "../utils/useOrder";
+// import FormStyles from "../styles/FormStyles";
 
 const CheckoutStyles = styled.section`
   min-height: 65vh;
@@ -100,7 +100,7 @@ export default function OrderPage({ data }) {
   };
   return (
     <>
-      <SEO title="View Cart" />
+      <Seo title="View Cart" />
       <CheckoutStyles>
         <div className="wrapper">
           <h2>Order Details</h2>
@@ -188,7 +188,7 @@ export default function OrderPage({ data }) {
                     ? formatMoney(orderSubtotal + taxes + tip)
                     : formatMoney(orderSubtotal + taxes)}
                 </p>
-                <FormStyles className="checkout">
+                {/* <FormStyles className="checkout">
                   <h4>Checkout</h4>
                   <div className="formSection">
                     <label htmlFor="name">Your Name</label>
@@ -198,7 +198,7 @@ export default function OrderPage({ data }) {
                     <label htmlFor="email">Your E-Mail</label>
                     <input type="email" name="email" id="email" />
                   </div>
-                </FormStyles>
+                </FormStyles> */}
               </div>
             </div>
           ) : (
