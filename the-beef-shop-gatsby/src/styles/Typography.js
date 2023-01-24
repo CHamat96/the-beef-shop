@@ -11,6 +11,10 @@ h1 {
     font-size:4.5rem;
 }
 
+h2 {
+    font-size:3.2rem;
+}
+
 h3,
 a {
     font-family:var(--navFont);

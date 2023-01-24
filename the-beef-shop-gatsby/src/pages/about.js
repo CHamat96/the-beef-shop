@@ -19,6 +19,17 @@ const AboutStyles = styled.div`
       margin: 30px 0;
     }
   }
+
+  .staffSection {
+    h2 {
+      margin:15px 0;
+    }
+    p {
+      margin:8px 0;
+      line-height:2rem;
+      letter-spacing:0.02rem;
+    }
+  }
 `;
 
 const StaffGridStyles = styled.div`
@@ -66,15 +77,20 @@ export default function AboutPage({ data }) {
     <>
       <Seo title="About The Beef" />
       <AboutStyles>
+        <div className="heroImage">
         <StaticImage
           src="../images/about-hero.jpg"
           layout="fullWidth"
-          style={{ maxHeight: "40rem" }}
+          aspectRatio={2.75 / 1 }
           objectPosition="top"
           transformOptions={{ cropFocus: "attention" }}
         />
+        <div className="overlay">
+          <h2>About the Beef</h2>
+        </div>
+        </div>
         <section className="staffSection wrapper">
-          <h2>About</h2>
+          <h2>Our History</h2>
           <p>
             Heirloom chicharrones chia hexagon snackwave listicle esse sartorial
             everyday carry kogi af helvetica. Readymade sunt portland keffiyeh,

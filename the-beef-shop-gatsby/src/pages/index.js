@@ -12,35 +12,6 @@ import "../images/kitchen.jpeg";
 import Seo from "../components/Seo";
 
 const HomeStyles = styled.div`
-  .heroImage {
-    position: relative;
-
-    .overlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      padding: 15px;
-      font-size: 3.8rem;
-      border-radius: 15px;
-      background: var(--shadow);
-      h2 {
-        text-shadow: var(--textBorder);
-        color: #ffffff;
-        text-transform: uppercase;
-      }
-      .title {
-        display: block;
-        font-family: var(--titleFont);
-        text-transform: none;
-      }
-      @media screen and (max-width: 500px) {
-        left: 50px;
-        font-size: 20px;
-        transform: translate(0%, -50%);
-      }
-    }
-  }
 
   .headChef {
     .flexParent {
@@ -95,8 +66,7 @@ export default function Home({ data }) {
             alt="the outside of a restaurant at night"
             placeholder="blurred"
             loading="lazy"
-            aspectRatio={16 / 9}
-            // style={{ maxHeight: "35rem" }}
+            aspectRatio={2.75 /1}
           />
           <div className="overlay">
             <h2>
@@ -146,7 +116,7 @@ export default function Home({ data }) {
             layout="fullWidth"
             alt="a frying pan over a hot stove"
             style={{border: "solid 15px var(--red)" }}
-            aspectRatio={ 16/9 }
+            aspectRatio={ 3 / 1 }
           />
           <section>
             <h3>

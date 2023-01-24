@@ -161,7 +161,7 @@ export const query = graphql`
           asset {
             gatsbyImage(
               layout:CONSTRAINED
-              width:150
+              width:175
               aspectRatio:1.00
               placeholder: BLURRED
             )
