@@ -182,12 +182,14 @@ export const query = graphql`
         id
         position
         image {
+          hotspot {
+            x
+            y
+          }
           asset {
             gatsbyImageData(
-              layout: CONSTRAINED
               width: 200
               height: 200
-              placeholder: BLURRED
             )
           }
         }

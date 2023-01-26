@@ -57,10 +57,40 @@ async function createBeerNodes({ actions, createNodeId, createContentDigest }) {
   });
 }
 
+async function createPagesfromCategories({ graphql, actions }) {
+  const path = require('path')
+  const categoryTemplate = path.resolve('./src/pages/menu.js')
+
+  const { data } = await graphql(`
+    query {
+      categories: allSanityMenuCategory {
+        nodes {
+          name
+          id
+        }
+      }
+    }
+  `);
+
+  data.categories.nodes.forEach((category) => {
+    actions.createPage({
+      path:`menu/${category.name}`,
+      component: categoryTemplate,
+      context: {
+        category: category.name,
+        catRegex: `/^${category.name}/i`
+      }
+    })
+  })
+}
+
 exports.sourceNodes = async (params) => {
   await Promise.all([createBeerNodes(params)]);
 };
 
 exports.createPages = async (params) => {
-  await Promise.all([createMenuItemPages(params)]);
+  await Promise.all([
+    createMenuItemPages(params),
+    createPagesfromCategories(params)
+  ]);
 };

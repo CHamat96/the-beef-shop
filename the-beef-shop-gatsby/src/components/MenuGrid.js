@@ -27,12 +27,21 @@ const ItemStyles = styled.div`
   align-items:center;
 
   .gatsby-image-wrapper {
+    --x: ${(props) => props.objectPosition.x};
+    --y: ${(props) => props.objectPosition.y};
+    border: dashed 15px var(--beige);
+    transform:rotate(-2deg);
     margin:0 auto;
-    transform: rotate(-2deg);
+
+    div[aria-hidden='true'] {
+      padding-bottom: 41% !important;
+    }
+
     img {
-      border: dashed 15px var(--beige);
+      object-position: var(--x) var(--y) !important;
     }
   }
+  
 `;
 
 export const formatMoney = Intl.NumberFormat("en-CA", {
@@ -40,11 +49,15 @@ export const formatMoney = Intl.NumberFormat("en-CA", {
   currency: "CAD",
 }).format;
 
-const MenuItem = function ({ item }) {
-  const image = getImage(item.image.asset.gatsbyImage);
+const MenuItem = function ({ item, image }) {
+  const img = getImage(image.asset)
+  const objPosition = {
+    x:`${image.hotspot.x * 100}%`,
+    y: `${image.hotspot.y * 100}%`
+  }
   return (
-    <ItemStyles className="item">
-      <GatsbyImage image={image} />
+    <ItemStyles className="item" objectPosition={objPosition}>
+      <GatsbyImage image={img} alt={item.name}/>
       <Link className="accent" to={`/menu/${item.slug.current}`}>
         <h3 className="itemTitle">{item.name}</h3>
       </Link>
@@ -58,9 +71,9 @@ const MenuItem = function ({ item }) {
 export default function MenuGrid({ menu, gridClass }) {
   return (
     <MenuGridStyles
-    className={gridClass || ''}s>
+    className={gridClass || ''}>
       {menu.map((item, index) => (
-        <MenuItem key={`${item.id} - ${index}`} item={item}/>
+        <MenuItem key={`${item.id} - ${index}`} item={item} image={item.image}/>
       ))}
     </MenuGridStyles>
   );

@@ -196,6 +196,10 @@ export const query = graphql`
           current
         }
         image {
+          hotspot {
+            x
+            y
+          }
           asset {
             gatsbyImage(
               layout: CONSTRAINED
@@ -210,6 +214,10 @@ export const query = graphql`
     headChef: sanityStaff(position: { eq: "Head Chef" }) {
       name
       image {
+        hotspot {
+            x
+            y
+          }
         asset {
           gatsbyImageData(
             layout: CONSTRAINED

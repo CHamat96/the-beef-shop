@@ -1,6 +1,7 @@
 import { graphql, Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
+import CategoryFilter from "../components/CategoryFilter";
 import MenuGrid from "../components/MenuGrid";
 import Seo from "../components/Seo";
 
@@ -25,14 +26,19 @@ const MenuStyles = styled.div`
     }
     }
 
+    .catName {
+        text-align:center;
+    }
+
    
 `
 
-export default function MenuPage({ data }){
+export default function MenuPage({ data, pageContext }){
+    const menu = data.allMenuItems.nodes
     const sandwiches = data.sandwiches.nodes
     const mains = data.mains.nodes
     const sides = data.sides.nodes
-
+    const desserts = data.desserts.nodes
     return (
         <>
         <Seo title="Menu"/>
@@ -40,19 +46,38 @@ export default function MenuPage({ data }){
         <div className="wrapper">        
             <h2>Our Menu</h2>
             <p className="beersLink">We have a weekly rotating tap of local beers available for dine-in only. View the full list <Link className="red" to="/onTap">Here</Link> </p>
+            <CategoryFilter activeCategory={pageContext.category}/>
+            {!pageContext.category ? (
+            <>
             <section>
-            <h3>Sandwiches</h3>
-            <MenuGrid
-            menu={sandwiches}/>
+                <h3>Sandwiches</h3>
+                <MenuGrid
+                menu={sandwiches}/>
             </section>
             <section>
                 <h3>Main Courses</h3>
-                <MenuGrid menu={mains}/>
+                <MenuGrid menu={mains}
+                />
             </section>
             <section>
                 <h3>Sides</h3>
-                <MenuGrid menu={sides}/>
+                <MenuGrid menu={sides}
+                />
             </section>
+            <section>
+                <h3>Desserts</h3>
+                <MenuGrid menu={desserts}
+                />
+            </section>
+            </>
+            ) :  (
+                <>
+                <h3 className="catName">{pageContext.category}</h3>
+                <MenuGrid menu={menu}
+                />
+                </>
+            )
+            }
         </div>        
         </MenuStyles>
         </>
@@ -60,37 +85,53 @@ export default function MenuPage({ data }){
 }
 
 export const query = graphql`
-    query {
+    query CatQuery($catRegex: String) {
+        allMenuItems: allSanityMenuItem(
+            filter: { category: { elemMatch: {name: { regex: $catRegex }} } } 
+        ) {
+            ...MenuDetails
+        }
         sandwiches: allSanityMenuItem(filter:{
-            category:{
-                elemMatch: 
-                {name:{
-                    eq:"Sandwiches"
-                }}
-            }
-        }){
-            ...MenuDetails
+        category:{
+            elemMatch: 
+            {name:{
+                eq:"Sandwiches"
+            }}
         }
-        mains: allSanityMenuItem(filter:{
-            category:{
-                elemMatch: 
-                {name:{
-                    eq:"Mains"
-                }}
-            }
-        }){
-            ...MenuDetails
+    }){
+        ...MenuDetails
+    }
+    mains: allSanityMenuItem(filter:{
+        category:{
+            elemMatch: 
+            {name:{
+                eq:"Mains"
+            }}
         }
-        sides: allSanityMenuItem(filter:{
-            category:{
-                elemMatch: 
-                {name:{
-                    eq:"Sides"
-                }}
-            }
-        }){
-            ...MenuDetails
+    }){
+        ...MenuDetails
+    }
+    sides: allSanityMenuItem(filter:{
+        category:{
+            elemMatch: 
+            {name:{
+                eq:"Sides"
+            }}
         }
+    }){
+        ...MenuDetails
+    }
+    desserts: allSanityMenuItem(filter: {
+        category: {
+            elemMatch: {
+                name: {
+                    eq: "Desserts"
+                }
+            }
+        }
+    }) {
+        ...MenuDetails
+    }
     }
 
     fragment MenuDetails on SanityMenuItemConnection{
@@ -102,14 +143,18 @@ export const query = graphql`
       }
       price
       image {
+        hotspot {
+            x
+            y
+        }
         asset {
-          gatsbyImage(
-            layout:CONSTRAINED,
-            placeholder:BLURRED,
-            height:250,
-            width:250
-            cropFocus:ENTROPY
-          )
+            gatsbyImageData(
+              layout: CONSTRAINED
+              width: 250
+              height:250
+              placeholder: BLURRED
+              fit:FILL
+            )
         }
       }
       description

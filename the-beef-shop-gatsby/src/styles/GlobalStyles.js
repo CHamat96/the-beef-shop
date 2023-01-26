@@ -136,18 +136,17 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
     flex-wrap:wrap;
     justify-content:space-between;
 }
-
-.gatsby-image-wrapper img {
+.gatsby-image-wrapper {
+  img {
     display:block;
-    width:auto;
-    height:100%;
+    margin:0 auto;
+    width:100%;
+    height:auto;
+    object-fit:none;
+  }
 }
 
-img {
-    display:block;
-    width:auto;
-    height:100%;
-}
+
 `;
 
 export default GlobalStyles;

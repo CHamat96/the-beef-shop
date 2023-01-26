@@ -41,11 +41,13 @@ const CheckoutStyles = styled.section`
 const ContainerStyles = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
-  max-width: 60rem;
+  max-width: 62rem;
   border: solid 1px var(--beige);
   padding: 15px;
   margin: 10px 0;
   position: relative;
+  place-content:flex-start;
+  align-items:center;
 
   ul {
     padding: 0 15px;
@@ -82,7 +84,7 @@ export default function OrderPage({ data }) {
     menu,
   });
   const orderSubtotal = calculateOrderTotal(order, menu);
-
+  console.log(order)
   const taxes = orderSubtotal * 0.15;
   const [tip, setTip] = useState(null);
   const [tipped, setTipped] = useState(false);
@@ -114,22 +116,18 @@ export default function OrderPage({ data }) {
                       <GatsbyImage image={image} alt={item.name} />
                       <div className="itemDetails">
                         <h3>{item.name}</h3>
-                        {item.hasExtras ? (
-                          <ul>
+                        <ul>
                             <li>
-                              <p>{item.addOns.dunked}</p>
+                              <p>{item.toppings.dunked}</p>
                             </li>
-                            {item.addOns.extras.map((topping) => {
+                            {item.toppings.extras ? item.toppings.extras.map((topping) => {
                               return (
                                 <li key={topping}>
                                   <p>{topping}</p>
                                 </li>
                               );
-                            })}
+                            }) : ''}
                           </ul>
-                        ) : (
-                          ""
-                        )}
                         <p>{formatMoney(item.price / 100)}</p>
                       </div>
                       <button
@@ -220,6 +218,10 @@ export const query = graphql`
         id
         price
         image {
+          hotspot {
+            x
+            y
+          }
           asset {
             gatsbyImageData(
               width: 100
