@@ -5,33 +5,35 @@ import useForm from "../utils/useForm";
 import useOrder from "../utils/useOrder";
 
 export default function OrderForm({ item }) {
-  const [dunked, setDunked] = useState("");
-  const [hasExtras, setHasExtras] = useState(false);
-  const [toppingsList, setToppingsList] = useState([]);
+  const [extrasList, setExtrasList] = useState([]);
 
-  const { values } = useForm({
-    totalCost: null,
+  const { values, setValues, updateValue } = useForm({
+    dunked: item.isCustomizable ? "Dry" : '',
+    extras: extrasList
   });
+
+  console.log(values)
 
   const { addToOrder } = useOrder({
     item,
-    input: values,
+    values,
   });
 
-  const handleRadioChange = (e) => {
-    const value = e.target.value;
-    setDunked(value);
-    setHasExtras(true);
-  };
-
   const handleChecked = (e) => {
-    const value = e.target.value;
-    if (e.target.checked) {
-      setToppingsList([...toppingsList, value]);
+    let arr = [...extrasList]
+    let value = e.target.value
+    if(e.target.checked){
+      arr = [...extrasList, value];
     } else {
-      setToppingsList(toppingsList.filter((topping) => topping !== value));
+      arr = arr.filter((topping) => topping !== value)
     }
-    toppingsList.length >= 1 ? setHasExtras(true) : setHasExtras(false);
+
+    setExtrasList(arr)
+    
+    setValues({
+      ...values,
+      [e.target.name]:arr
+    })
   };
 
   const handleSubmit = (e) => {
@@ -42,13 +44,8 @@ export default function OrderForm({ item }) {
       price: item.price,
       id: item.id,
       image: item.image.asset,
-      hasExtras,
-      addOns: {
-        dunked,
-        extras: toppingsList,
-      },
+      toppings: values
     });
-    window.scrollTo(0, 0);
   };
 
   return (
@@ -62,30 +59,30 @@ export default function OrderForm({ item }) {
               <label htmlFor="dry">
                 <input
                   type="radio"
-                  name="dryorwet"
+                  name="dunked"
                   id="dry"
                   value="Dry"
-                  onChange={handleRadioChange}
+                  onChange={updateValue}
                 />
                 Dry (No extra Jus on the Sandwich)
               </label>
               <label htmlFor="wet">
                 <input
                   type="radio"
-                  name="dryorwet"
+                  name="dunked"
                   id="wet"
                   value="Wet"
-                  onChange={handleRadioChange}
+                  onChange={updateValue}
                 />
                 Wet (Ladle on some extra Jus)
               </label>
               <label htmlFor="dipped">
                 <input
                   type="radio"
-                  name="dryorwet"
+                  name="dunked"
                   id="dipped"
                   value="Dipped"
-                  onChange={handleRadioChange}
+                  onChange={updateValue}
                 />
                 Dipped (Dunk the sandwich in the jus)
               </label>
@@ -97,7 +94,7 @@ export default function OrderForm({ item }) {
               <label htmlFor="giard">
                 <input
                   type="checkbox"
-                  name="giard"
+                  name="extras"
                   id="giard"
                   value="Giardiniera"
                   onChange={(e) => handleChecked(e)}
@@ -107,7 +104,7 @@ export default function OrderForm({ item }) {
               <label htmlFor="sweetPeps">
                 <input
                   type="checkbox"
-                  name="sweetPeps"
+                  name="extras"
                   id="sweetPeps"
                   value="Sweet Peppers"
                   onChange={(e) => handleChecked(e)}
@@ -117,7 +114,7 @@ export default function OrderForm({ item }) {
               <label htmlFor="provCheese">
                 <input
                   type="checkbox"
-                  name="provCheese"
+                  name="extras"
                   id="provCheese"
                   value="Provolone Cheese"
                   onChange={(e) => handleChecked(e)}
@@ -127,7 +124,7 @@ export default function OrderForm({ item }) {
               <label htmlFor="cheeseSauce">
                 <input
                   type="checkbox"
-                  name="cheeseSauce"
+                  name="extras"
                   id="cheeseSauce"
                   value="Cheese Sauce"
                   onChange={(e) => handleChecked(e)}
