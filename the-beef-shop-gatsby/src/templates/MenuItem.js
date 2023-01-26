@@ -12,7 +12,8 @@ const MenuItemStyles = styled.section`
     border: dashed 8px var(--beige);
     padding: 15px;
     @media screen and (max-width:400px) {
-      width:95%;
+      width:100%;
+      padding:10px;
     }
   }
 
@@ -73,9 +74,6 @@ const MenuItemStyles = styled.section`
       .item {
         transform:scale(0.9);
         padding:10px;
-      }
-      .gatsby-image-wrapper img {
-        border:dashed 10px var(--beige);
       }
     }
 
@@ -139,8 +137,13 @@ export const query = graphql`
       price
       description
       image {
+        hotspot {
+            x
+            y
+          }
         asset {
           gatsbyImage(
+            layout:CONSTRAINED
             width:350
             aspectRatio:1.0
             placeholder: BLURRED
@@ -158,10 +161,14 @@ export const query = graphql`
           current
         }
         image {
+          hotspot {
+            x
+            y
+          }
           asset {
-            gatsbyImage(
+            gatsbyImageData(
               layout:CONSTRAINED
-              width:175
+              width:160
               aspectRatio:1.00
               placeholder: BLURRED
             )

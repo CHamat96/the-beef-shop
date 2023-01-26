@@ -21,7 +21,17 @@ module.exports = {
   plugins: [
     "gatsby-plugin-styled-components",
     "gatsby-plugin-react-helmet",
-    "gatsby-plugin-image",
+    {
+      resolve:"gatsby-plugin-image",
+      options: {
+        defaults: {
+          placeholder: 'blurred',
+          quality:100,
+          layout:'constrained',
+          loading:'lazy'
+        }
+      }
+  },
     'gatsby-plugin-percy',
     {
       resolve: `gatsby-source-filesystem`,
